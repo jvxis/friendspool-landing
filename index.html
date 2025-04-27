@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Friendspool ⚡ Lightning Node</title>
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --text: #e0e0e0;
+      --neon: #00ffff;
+      --neon-shadow: rgba(0, 255, 255, 0.5);
+      --tile-bg-dark: rgba(10,10,10,0.6);
+      --tile-bg-light: transparent;
+    }
+    html[data-theme="light"] {
+      --bg: #f0f0f0;
+      --text: #222;
+      --neon: #007777;
+      --neon-shadow: rgba(0, 118, 119, 0.3);
+    }
+    html {
+      background: var(--bg);
+      color: var(--text);
+      transition: background 0.3s, color 0.3s;
+      font-family: 'Courier New', Courier, monospace;
+    }
+    body {
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    /* Loader Styles */
+    #loader {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: var(--bg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+    }
+    .progress-bar {
+      width: 0;
+      height: 4px;
+      background: var(--neon);
+      box-shadow: 0 0 6px var(--neon-shadow);
+      animation: load 1.5s ease-in-out forwards;
+    }
+    @keyframes load {
+      to { width: 80%; }
+    }
+    .connecting {
+      margin-top: 1rem;
+      position: relative;
+      font-size: 1.5rem;
+      color: var(--neon);
+      text-shadow: 0 0 6px var(--neon-shadow);
+      animation: glitch 1s infinite;
+    }
+    @keyframes glitch {
+      0% { opacity:1; transform: translate(0,0); }
+      20% { opacity:0.8; transform: translate(-2px,2px); }
+      40% { opacity:0.6; transform: translate(2px,-2px); }
+      60% { opacity:1; transform: translate(-2px,-2px); }
+      80% { opacity:0.8; transform: translate(2px,2px); }
+      100% { opacity:1; transform: translate(0,0); }
+    }
+    /* Tile Styles */
+    .tile {
+      background: var(--tile-bg-dark);
+      border: 1px solid var(--neon);
+      padding: 1rem;
+      border-radius: 0.5rem;
+      box-shadow: 0 0 10px var(--neon-shadow);
+    }
+    html[data-theme="light"] .tile {
+      background: var(--tile-bg-light);
+      box-shadow: none;
+    }
+    header {
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      text-shadow: 0 0 8px var(--neon-shadow);
+    }
+    header h1 {
+      margin: 0;
+      font-size: 1.8rem;
+      color: var(--neon);
+      text-shadow: 0 0 4px var(--neon-shadow);
+    }
+    .theme-toggle {
+      cursor: pointer;
+      font-size: 1.4rem;
+      color: var(--neon);
+      text-shadow: 0 0 4px var(--neon-shadow);
+    }
+    main {
+      flex: 1;
+      display: grid;
+      grid-template-rows: auto 1fr;
+      gap: 1.5rem;
+      padding: 1rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .hero {
+      text-align: center;
+    }
+    .hero h2 {
+      font-size: 2rem;
+      color: var(--neon);
+      text-shadow: 0 0 6px var(--neon-shadow);
+    }
+    .sections {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+    .tile h3 {
+      margin-top: 0;
+      color: var(--neon);
+      text-shadow: 0 0 4px var(--neon-shadow);
+      font-size: 1.2rem;
+    }
+    .tile ul {
+      list-style: none;
+      padding: 0;
+      margin: 0.5rem 0;
+    }
+    .tile li {
+      margin: 0.4rem 0;
+    }
+    .btn {
+      display: inline-block;
+      padding: 0.4rem 0.8rem;
+      margin: 0.3rem 0.3rem 0.3rem 0;
+      background: var(--neon);
+      color: var(--bg);
+      text-decoration: none;
+      border-radius: 0.3rem;
+      font-size: 0.9rem;
+      box-shadow: 0 0 6px var(--neon-shadow);
+    }
+    .btn:hover { opacity: 0.8; }
+    footer {
+      text-align: center;
+      padding: 0.5rem;
+      font-size: 0.85rem;
+      border-top: 1px solid var(--neon);
+      text-shadow: 0 0 4px var(--neon-shadow);
+    }
+  </style>
+</head>
+<body>
+  <!-- Loader -->
+  <div id="loader">
+    <div class="progress-bar"></div>
+    <div class="connecting">Connecting...</div>
+  </div>
+  <!-- Main Content -->
+  <div id="content" style="display:none; flex:1; flex-direction:column;">
+    <header>
+      <h1>Friendspool ⚡ Lightning Node</h1>
+      <div class="theme-toggle" onclick="toggleTheme()">🌙/☀️</div>
+    </header>
+    <main>
+      <section class="hero">
+        <h2>Connect to Friendspool 🚀</h2>
+        <p>Your trusted Lightning gateway. Join the revolution! 💻💡</p>
+      </section>
+      <div class="sections">
+        <div class="tile">
+          <h3>🔗 Contacts & Info</h3>
+          <ul>
+            <li>💬 Telegram: <a href="https://t.me/jvx1971" target="_blank" style="color:var(--neon)">@jvx1971</a></li>
+            <li>📧 Lightning Address: <strong style="color:var(--neon)">jvx@pay.br-ln.com</strong></li>
+            <li>📏 Minimum Channel Size: <strong style="color:var(--neon)">5,000,000 sats</strong></li>
+          </ul>
+          <a href="lightning:jvx@pay.br-ln.com" class="btn">Pay / Connect</a>
+          <a href="https://t.me/jvx1971" class="btn">Open Chat</a>
+          <p style="margin:0.5rem 0; font-weight:bold; color:var(--neon); text-shadow:0 0 4px var(--neon-shadow);">
+            🇧🇷 Brazilian Node Runners: Join the <a href="https://br-ln.com" style="color:var(--neon); text-decoration:underline;">BR⚡LN Club</a> today!
+          </p>
+          <p>
+            <a href="https://amboss.space/c/friendspool" class="btn" style="background:transparent; color:var(--neon); box-shadow:none;">Amboss</a> |
+            <a href="https://services.br-ln.com/node/023e24602891c28a7872ea1ad5c1bb41abe4206ae1599bb981e3278a121e7895d6" class="btn" style="background:transparent; color:var(--neon); box-shadow:none;">BR⚡LN</a>
+          </p>
+        </div>
+        <div class="tile">
+          <h3>⚙️ Fee Policies</h3>
+          <ul>
+            <li>🔄 Continuous adjustments to optimize fees.</li>
+            <li>🤝 Cooperative strategy always improving flow.</li>
+            <li>♻️ Active Rebalancing: via LNDG, ensuring 30% outbound; using Regolancer, Jet-Lightning and Peerswap options.</li>
+            <li>⚖️ Zero Base Fee.</li>
+          </ul>
+        </div>
+        <div class="tile">
+          <h3>🚪 Channel Policies</h3>
+          <ul>
+            <li>🤝 We accept dual-funded proposals.</li>
+            <li>⌛ Cooperative close after 30 days without activity and >90% sats our side.</li>
+            <li>📈 Valuable channels get capacity upgrades; inactive channels may be resized.</li>
+            <li>⚠️ Private channels without rebalancing are closed quickly.</li>
+          </ul>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <p>Proudly operated by Friendspool ⚡</p>
+    </footer>
+  </div>
+  <script>
+    function toggleTheme() {
+      const html = document.documentElement;
+      html.setAttribute('data-theme', html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+    }
+    document.addEventListener("DOMContentLoaded", function() {
+      setTimeout(function() {
+        document.getElementById("loader").style.display = "none";
+        document.getElementById("content").style.display = "flex";
+      }, 1500);
+    });
+  </script>
+</body>
+</html>
