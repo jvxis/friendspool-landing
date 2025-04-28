@@ -25,40 +25,141 @@
       transition: background 0.3s, color 0.3s;
       font-family: 'Courier New', Courier, monospace;
     }
-    body { margin: 0; display: flex; flex-direction: column; min-height: 100vh; }
+    body {
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
     /* Loader Styles */
-    #loader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 999; }
-    .progress-bar { width: 0; height: 4px; background: var(--neon); box-shadow: 0 0 6px var(--neon-shadow); animation: load 1.5s ease-in-out forwards; }
+    #loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--bg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+    }
+    .progress-bar {
+      width: 0;
+      height: 4px;
+      background: var(--neon);
+      box-shadow: 0 0 6px var(--neon-shadow);
+      animation: load 1.5s ease-in-out forwards;
+    }
     @keyframes load { to { width: 80%; } }
-    .connecting { margin-top: 1rem; position: relative; font-size: 1.5rem; color: var(--neon); text-shadow: 0 0 6px var(--neon-shadow); animation: glitch 1s infinite; }
-    @keyframes glitch { 0%,100%{opacity:1;transform:translate(0,0);}20%{opacity:.8;transform:translate(-2px,2px);}40%{opacity:.6;transform:translate(2px,-2px);}60%{opacity:1;transform:translate(-2px,-2px);}80%{opacity:.8;transform:translate(2px,2px);} }
+    .connecting {
+      margin-top: 1rem;
+      font-size: 1.5rem;
+      color: var(--neon);
+      text-shadow: 0 0 6px var(--neon-shadow);
+      animation: glitch 1s infinite;
+    }
+    @keyframes glitch {
+      0%,100% { opacity:1; transform:translate(0,0); }
+      20% { opacity:0.8; transform:translate(-2px,2px); }
+      40% { opacity:0.6; transform:translate(2px,-2px); }
+      60% { opacity:1; transform:translate(-2px,-2px); }
+      80% { opacity:0.8; transform:translate(2px,2px); }
+    }
     /* Tile Styles */
-    .tile { background: var(--tile-bg-dark); border: 1px solid var(--neon); padding: 1rem; border-radius: 0.5rem; box-shadow: 0 0 10px var(--neon-shadow); }
-    html[data-theme="light"] .tile { background: var(--tile-bg-light); box-shadow: none; }
-    header { padding: 1rem; display: flex; justify-content: space-between; align-items: center; text-shadow: 0 0 8px var(--neon-shadow); }
-    header h1 { margin: 0; font-size: 1.8rem; color: var(--neon); text-shadow: 0 0 4px var(--neon-shadow); }
-    .theme-toggle { cursor: pointer; font-size: 1.4rem; color: var(--neon); text-shadow: 0 0 4px var(--neon-shadow); }
-    main { flex: 1; display: grid; grid-template-rows:auto 1fr; gap:1.5rem; padding:1rem; max-width:1200px; margin:0 auto; }
-    .hero { text-align:center; }
-    .hero h2 { font-size:2rem; color:var(--neon); text-shadow:0 0 6px var(--neon-shadow); }
-    .sections { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1rem; }
-    .tile h3 { margin-top:0; color:var(--neon); text-shadow:0 0 4px var(--neon-shadow); font-size:1.2rem; }
-    .tile ul { list-style: none; padding: 0; margin: 0.5rem 0; }
-    .tile li { margin: 0.4rem 0; }
-    .info-entry { display:flex; justify-content:space-between; align-items:center; margin:.4rem 0; }
-    .info-entry code { background:rgba(0,0,0,0.2); padding:.2rem .4rem; border-radius:.2rem; cursor:pointer; }
-    .btn { display:inline-block; padding:.4rem .8rem; margin:.3rem .3rem .3rem 0; background:var(--neon); color:var(--bg); text-decoration:none; border-radius:.3rem; font-size:.9rem; box-shadow:0 0 6px var(--neon-shadow); }
-    .btn:hover{opacity:.8;}
-    footer{ text-align:center; padding:.5rem; font-size:.85rem; border-top:1px solid var(--neon); text-shadow:0 0 4px var(--neon-shadow); }
+    .tile {
+      background: var(--tile-bg-dark);
+      border: 1px solid var(--neon);
+      padding: 1rem;
+      border-radius: 0.5rem;
+      box-shadow: 0 0 10px var(--neon-shadow);
+    }
+    html[data-theme="light"] .tile {
+      background: var(--tile-bg-light);
+      box-shadow: none;
+    }
+    header {
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      text-shadow: 0 0 8px var(--neon-shadow);
+    }
+    header h1 {
+      margin: 0;
+      font-size: 1.8rem;
+      color: var(--neon);
+      text-shadow: 0 0 4px var(--neon-shadow);
+    }
+    .theme-toggle {
+      cursor: pointer;
+      font-size: 1.4rem;
+      color: var(--neon);
+      text-shadow: 0 0 4px var(--neon-shadow);
+    }
+    main {
+      flex: 1;
+      display: grid;
+      grid-template-rows: auto 1fr;
+      gap: 1.5rem;
+      padding: 1rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .hero {
+      text-align: center;
+    }
+    .hero h2 {
+      font-size: 2rem;
+      color: var(--neon);
+      text-shadow: 0 0 6px var(--neon-shadow);
+    }
+    .sections {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+    .tile h3 {
+      margin-top: 0;
+      color: var(--neon);
+      text-shadow: 0 0 4px var(--neon-shadow);
+      font-size: 1.2rem;
+    }
+    .tile ul {
+      list-style: none;
+      padding: 0;
+      margin: 0.5rem 0;
+    }
+    .tile li {
+      margin: 0.4rem 0;
+    }
+    .btn {
+      display: inline-block;
+      padding: 0.4rem 0.8rem;
+      margin: 0.3rem 0.3rem 0.3rem 0;
+      background: var(--neon);
+      color: var(--bg);
+      text-decoration: none;
+      border-radius: 0.3rem;
+      font-size: 0.9rem;
+      box-shadow: 0 0 6px var(--neon-shadow);
+    }
+    .btn:hover { opacity: 0.8; }
+    footer {
+      text-align: center;
+      padding: 0.5rem;
+      font-size: 0.85rem;
+      border-top: 1px solid var(--neon);
+      text-shadow: 0 0 4px var(--neon-shadow);
+    }
   </style>
 </head>
 <body>
-  <!-- Loader -->
   <div id="loader">
     <div class="progress-bar"></div>
     <div class="connecting">Connecting...</div>
   </div>
-  <!-- Main Content -->
   <div id="content" style="display:none; flex:1; flex-direction:column;">
     <header>
       <h1>Friendspool ⚡ Lightning Node</h1>
@@ -73,12 +174,10 @@
         <div class="tile" id="contacts-tile">
           <h3>🔗 Contacts & Info</h3>
           <ul>
-            <!-- Dynamic info -->
             <li>Pub Key: <code id="pubkey" title="Click to copy"></code></li>
             <li>Location: <span id="location"></span></li>
             <li>Capacity / Channels: <span id="capacity"></span></li>
             <li>Sockets: <code id="sockets" title="Click to copy"></code></li>
-            <!-- Static info -->
             <li>💬 Telegram: <a href="https://t.me/jvx1971" target="_blank" style="color:var(--neon)">@jvx1971</a></li>
             <li>📧 Lightning Address: <strong style="color:var(--neon)">jvx@pay.br-ln.com</strong></li>
             <li>📏 Minimum Channel Size: <strong style="color:var(--neon)">5,000,000 sats</strong></li>
@@ -121,22 +220,48 @@
     const AMBOSS_URL = "/graphql";
     const AMBOSS_TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ2ZXJzaW9uIjowLjEsImlhdCI6MTczMTEwMzY2NCwiZXhwIjoxNzYyNjM5NjY0LCJpc3MiOiJhcGkuYW1ib3NzLnNwYWNlIiwic3ViIjoiNTllYzljMGYtODBjNC00NDY5LTllOTgtNzdmZmJiNDlkYjY5In0.8CSsO7na1MCawTzZalVFfQ-3bjOZdRdq2KWojQqfj_c";
     const NODE_PUB_KEY = "023e24602891c28a7872ea1ad5c1bb41abe4206ae1599bb981e3278a121e7895d6";
-    function toggleTheme() { const html=document.documentElement; html.setAttribute('data-theme', html.getAttribute('data-theme')==='dark'?'light':'dark'); }
+    function toggleTheme() {
+      const html = document.documentElement;
+      html.setAttribute('data-theme', html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+    }
     async function loadNodeData() {
       try {
-        const payload = { query: `query GetNode($pubkey:String!){getNode(pubkey:$pubkey){graph_info{metrics{capacity channels}node{addresses{addr ip_info{city country}}}}}}`, variables:{pubkey:NODE_PUB_KEY} };
-        const resp = await fetch(AMBOSS_URL, { method:'POST', headers:{ 'Content-Type':'application/json','Authorization':`Bearer ${AMBOSS_TOKEN}` }, body:JSON.stringify(payload) });
-        const json = await resp.json(); const info=json.data.getNode.graph_info; const metrics=info.metrics; const node=info.node;
-        const city=node.addresses[0]?.ip_info?.city||'Unknown'; const country=node.addresses[0]?.ip_info?.country||'Unknown';
-        document.getElementById('pubkey').textContent=NODE_PUB_KEY;
-        document.getElementById('location').textContent=`${city}, ${country}`;
-        document.getElementById('capacity').textContent=`${metrics.capacity} sats / ${metrics.channels} ch`;
-        document.getElementById('sockets').textContent=node.addresses.map(a=>a.addr).join(', ');
-        document.getElementById('pubkey').onclick=() => navigator.clipboard.writeText(NODE_PUB_KEY);
-        document.getElementById('sockets').onclick=() => navigator.clipboard.writeText(node.addresses.map(a=>a.addr).join(', '));
-      } catch(e) { console.error('Error loading node data',e); }
+        const payload = {
+          query: `query GetNode($pubkey:String!){getNode(pubkey:$pubkey){graph_info{metrics{capacity channels}node{addresses{addr ip_info{city country}}}}}}`,
+          variables: { pubkey: NODE_PUB_KEY }
+        };
+        const resp = await fetch(AMBOSS_URL, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${AMBOSS_TOKEN}`
+          },
+          body: JSON.stringify(payload)
+        });
+        if(!resp.ok) throw new Error(`Status ${resp.status}`);
+        const json = await resp.json();
+        const info = json.data.getNode.graph_info;
+        const metrics = info.metrics;
+        const node = info.node;
+        const city = node.addresses[0]?.ip_info?.city || 'Unknown';
+        const country = node.addresses[0]?.ip_info?.country || 'Unknown';
+        document.getElementById('pubkey').textContent = NODE_PUB_KEY;
+        document.getElementById('location').textContent = `${city}, ${country}`;
+        document.getElementById('capacity').textContent = `${metrics.capacity} sats / ${metrics.channels} ch`;
+        document.getElementById('sockets').textContent = node.addresses.map(a => a.addr).join(', ');
+        document.getElementById('pubkey').onclick = () => navigator.clipboard.writeText(NODE_PUB_KEY);
+        document.getElementById('sockets').onclick = () => navigator.clipboard.writeText(node.addresses.map(a => a.addr).join(', '));
+      } catch (e) {
+        console.error('Error loading node data', e);
+      }
     }
-    document.addEventListener("DOMContentLoaded", ()=>{ setTimeout(()=>{ document.getElementById("loader").style.display="none"; document.getElementById("content").style.display="flex"; loadNodeData(); },1500); });
+    document.addEventListener("DOMContentLoaded", () => {
+      setTimeout(() => {
+        document.getElementById("loader").style.display = "none";
+        document.getElementById("content").style.display = "flex";
+        loadNodeData();
+      }, 1500);
+    });
   </script>
 </body>
 </html>
