@@ -74,6 +74,7 @@
       padding: 1rem;
       border-radius: 0.5rem;
       box-shadow: 0 0 10px var(--neon-shadow);
+      overflow-wrap: break-word;
     }
     html[data-theme="light"] .tile {
       background: var(--tile-bg-light);
@@ -131,8 +132,19 @@
       padding: 0;
       margin: 0.5rem 0;
     }
-    .tile li {
-      margin: 0.4rem 0;
+    .tile ul li {
+      color: var(--text);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+    }
+    .tile ul li span.label {
+      margin-right: 0.5rem;
+      font-weight: bold;
+    }
+    .tile ul li span.value,
+    .tile ul li code {
+      color: var(--neon);
     }
     .btn {
       display: inline-block;
@@ -174,13 +186,13 @@
         <div class="tile" id="contacts-tile">
           <h3>🔗 Contacts & Info</h3>
           <ul>
-            <li>Pub Key: <code id="pubkey" title="Click to copy"></code></li>
-            <li>Location: <span id="location"></span></li>
-            <li>Capacity / Channels: <span id="capacity"></span></li>
-            <li>Sockets: <code id="sockets" title="Click to copy"></code></li>
-            <li>💬 Telegram: <a href="https://t.me/jvx1971" target="_blank" style="color:var(--neon)">@jvx1971</a></li>
-            <li>📧 Lightning Address: <strong style="color:var(--neon)">jvx@pay.br-ln.com</strong></li>
-            <li>📏 Minimum Channel Size: <strong style="color:var(--neon)">5,000,000 sats</strong></li>
+            <li><span class="label">Pub Key:</span> <code id="pubkey" title="Click to copy"></code></li>
+            <li><span class="label">Location:</span> <span id="location" class="value"></span></li>
+            <li><span class="label">Capacity / Channels:</span> <span id="capacity" class="value"></span></li>
+            <li><span class="label">Sockets:</span> <code id="sockets" class="value" title="Click to copy"></code></li>
+            <li><span class="label">💬 Telegram:</span> <span class="value">@jvx1971</span></li>
+            <li><span class="label">📧 Lightning Address:</span> <span class="value">jvx@pay.br-ln.com</span></li>
+            <li><span class="label">📏 Minimum Channel Size:</span> <span class="value">5,000,000 sats</span></li>
           </ul>
           <a href="lightning:jvx@pay.br-ln.com" class="btn">Pay / Connect</a>
           <a href="https://t.me/jvx1971" class="btn">Open Chat</a>
@@ -192,6 +204,7 @@
             <a href="https://services.br-ln.com/node/023e24602891c28a7872ea1ad5c1bb41abe4206ae1599bb981e3278a121e7895d6" class="btn" style="background:transparent; color:var(--neon); box-shadow:none;">BR⚡LN</a>
           </p>
         </div>
+        <!-- Fee Policies -->
         <div class="tile">
           <h3>⚙️ Fee Policies</h3>
           <ul>
@@ -201,6 +214,7 @@
             <li>⚖️ Zero Base Fee.</li>
           </ul>
         </div>
+        <!-- Channel Policies -->
         <div class="tile">
           <h3>🚪 Channel Policies</h3>
           <ul>
@@ -238,7 +252,7 @@
           },
           body: JSON.stringify(payload)
         });
-        if(!resp.ok) throw new Error(`Status ${resp.status}`);
+        if (!resp.ok) throw new Error(`Status ${resp.status}`);
         const json = await resp.json();
         const info = json.data.getNode.graph_info;
         const metrics = info.metrics;
