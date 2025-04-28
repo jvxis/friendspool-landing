@@ -150,10 +150,10 @@
       flex: 1 1 auto;
       min-width: 0;
     }
-    /* Center bottom paragraphs and links */
-    .tile p {
-      text-align: center;
-    }
+    .tile p, .btn-wrapper { text-align: center; }
+    /* Wrapper for buttons */
+    .btn-wrapper { margin: 0.5rem 0; }
+  
     .btn {
       display: inline-block;
       padding: 0.4rem 0.8rem;
@@ -202,8 +202,10 @@
             <li><span class="label">📧 Lightning Address:</span> <span class="value">jvx@pay.br-ln.com</span></li>
             <li><span class="label">📏 Minimum Channel Size:</span> <span class="value">5,000,000 sats</span></li>
           </ul>
-          <a href="lightning:jvx@pay.br-ln.com" class="btn">Pay / Connect</a>
-          <a href="https://t.me/jvx1971" class="btn">Open Chat</a>
+          <div class="btn-wrapper">
+            <a href="lightning:jvx@pay.br-ln.com" class="btn">Pay / Connect</a>
+            <a href="https://t.me/jvx1971" class="btn">Open Chat</a>
+          </div>
           <p style="margin:0.5rem 0; font-weight:bold; color:var(--neon); text-shadow:0 0 4px var(--neon-shadow);">
             🇧🇷 Brazilian Node Runners: Join the <a href="https://br-ln.com" style="color:var(--neon); text-decoration:underline;">BR⚡LN Club</a> today!
           </p>
@@ -216,20 +218,20 @@
         <div class="tile">
           <h3>⚙️ Fee Policies</h3>
           <ul>
-            <li>🔄 Continuous adjustments to optimize fees.</li>
-            <li>🤝 Cooperative strategy always improving flow.</li>
-            <li>♻️ Active Rebalancing: via LNDG, ensuring 30% outbound; using Regolancer, Jet-Lightning and Peerswap options.</li>
-            <li>⚖️ Zero Base Fee.</li>
+            <li>🔄 Continuously fine-tune and adapt fee parameters based on real-time network metrics, ensuring each transaction remains cost-efficient.</li>
+            <li>🤝 Employ a collaborative liquidity strategy by engaging trusted peers, maintaining smooth channel throughput and shared network health.</li>
+            <li>♻️ Proactive rebalancing via LNDG to secure at least 30% outbound capacity, leveraging Regolancer, Jet-Lightning, and Peerswap to uphold channel stability.</li>
+            <li>⚖️ Uphold a zero base fee policy to eliminate fixed costs and foster frictionless micropayments across the Lightning Network.</li>
           </ul>
         </div>
         <!-- Channel Policies -->
         <div class="tile">
           <h3>🚪 Channel Policies</h3>
           <ul>
-            <li>🤝 We accept dual-funded proposals.</li>
-            <li>⌛ Cooperative close after 30 days without activity and >90% sats our side.</li>
-            <li>📈 Valuable channels get capacity upgrades; inactive channels may be resized.</li>
-            <li>⚠️ Private channels without rebalancing are closed quickly.</li>
+            <li>🤝 Open to dual-funded channel setups, aligning incentives and reducing unilateral risk for all participants.</li>
+            <li>⌛ Channels inactive for 30+ days and holding over 90% of our sats will be cooperatively closed to reallocate liquidity where it’s most needed.</li>
+            <li>📈 High-value channels receive proactive capacity upgrades based on usage; underutilized ones may be resized to optimize performance.</li>
+            <li>⚠️ Private channels without periodic rebalancing are swiftly closed to protect network health and ensure efficient capital use.</li>
           </ul>
         </div>
       </div>
