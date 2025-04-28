@@ -142,9 +142,13 @@
       margin-right: 0.5rem;
       font-weight: bold;
     }
-    .tile ul li span.value,
+    .tile ul li .value,
     .tile ul li code {
       color: var(--neon);
+      word-break: break-word;
+      white-space: normal;
+      flex: 1 1 auto;
+      min-width: 0;
     }
     .btn {
       display: inline-block;
